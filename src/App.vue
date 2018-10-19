@@ -1,22 +1,23 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Hi />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Hi from './components/Hi.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    Hi
   }
 }
 </script>
 
-<style>
+<style lang="scss">
+//@import url("../node_modules/animate.css/animate.min.css");
+//@import "https://raw.githubusercontent.com/daneden/animate.css/master/animate.css";
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
