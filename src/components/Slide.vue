@@ -1,23 +1,17 @@
 <template>
   <div class="slide">
-    
-    <img :src="slide.src">
+    <img :src="`static/img/img${slide.id}.jpg`" alt="">
   </div>
 </template>
-
 <script>
+  export default {
+    data() {
+      return {
 
-export default {
-  data() {
-    return {}
-  },
-  props: [
-    'slide'
-  ]
-    
-}
+      }
+    },
+    props: {
+      slide: Object
+    }
+  }
 </script>
-
-<style>
-  
-</style>

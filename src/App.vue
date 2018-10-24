@@ -1,23 +1,26 @@
 <template>
   <div id="app">
-    <Slides />
+    <!-- <img src="./assets/logo.png"> -->
+    <Slides/>
+
   </div>
 </template>
 
 <script>
-import Slides from './components/Slides.vue'
-
+import Slides from './components/Slides'
 export default {
-  name: 'app',
+  name: 'App',
+  data () {
+    return {
+    msg: './assets/logo.png'
+    }
+  },
   components: {
     Slides
-  }
+  },
 }
 </script>
 
-<style lang="scss">
-//@import "https://raw.githubusercontent.com/daneden/animate.css/master/animate.css";
-#app {
-  max-width: 900px;
-}
+<style>
+
 </style>
