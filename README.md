@@ -1,4 +1,4 @@
-# vuejsslider
+# VueJs slider
 
 > A Vue.js project
 

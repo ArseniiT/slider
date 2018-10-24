@@ -15,3 +15,11 @@
     }
   }
 </script>
+<style scoped>
+  img {
+    max-width: 100%;
+  }
+  .slide {
+    display: inline-block;
+  }
+</style>
