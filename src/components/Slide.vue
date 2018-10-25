@@ -1,5 +1,6 @@
 <template>
   <div class="slide">
+    <p>{{slide.title}}</p>
     <img :src="`static/img/img${slide.id}.jpg`" alt="">
   </div>
 </template>
