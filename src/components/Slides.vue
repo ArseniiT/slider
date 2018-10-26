@@ -2,6 +2,9 @@
   <div class="slides"
     @mouseleave="mouseLeave"
     @mouseover="mouseOver">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
       <div  :style="{width: innerWidth + 'px', marginLeft: '-' + slidesInnerMarginLeft + 'px'}" class="slides-inner">
 
         <Slide  v-for="slide in slides"
@@ -11,31 +14,35 @@
         />
 
       </div>
-      <div class="navigation">
-        <span @click="goToPrev">Prev</span>
-        <span v-for="slide in slides" :key="slide.id">{{slide.id+1}}</span>
-        <span @click="goToNext">Next</span>
-      </div>
+
+      <ul class="navigation pagination">
+        <!-- <span @click="goToPrev">Prev</span> -->
+        <li class="waves-effect left-right" @click="goToPrev"><i class="material-icons">&lt;</i></li>
+        <li class="waves-effect m-nav "
+          v-for="slide in slides"
+          :key="slide.id"
+          :class="[slide.id === currentIndex ? 'active' : '']"
+          @click="goToSlideIndex(slide.id)"
+          >
+          {{slide.id+1}}
+        </li>
+        <li class="waves-effect left-right" @click="goToNext"><i class="material-icons">&gt;</i></li>
+        <!-- <span @click="goToNext">Next</span> -->
+      </ul>
   </div>
 </template>
 <script>
   import Slide from './Slide';
+  import Projects from './projects.json';
+
   export default {
     data () {
       return {
-        slides: [
-          {id:0, title: 'Canadian tire menu script', src: 'https://github.com/ArseniiT/CanadianTireMenu'},
-          {id:1, title: 'Kijiji infinity loader script', src: 'https://github.com/ArseniiT/KijijiInfiniteScrolling'},
-          {id:2, title: 'Spring Boot CRUD Library', src: 'https://bookcrud.herokuapp.com'},
-          {id:3, title: 'News single page application', src: 'https://vuejsspa3.herokuapp.com'},
-          {id:4, title: 'itBlog with using PHP and MySQL', src: 'https://arseniit.000webhostapp.com'},
-          {id:5, title: 'TopJava. My trainee project', src: 'https://caloriecounterjava.herokuapp.com/meals'},
-          {id:6, title: 'Multi translator', src: 'http://multitrans.myartsonline.com'},
-        ],
-        innerWidth: 0,
-        singleWidth: 0,
-        currentIndex: 0,
-        mouseOut: true
+        slides: Projects,
+        innerWidth: 0,    // width of all slides
+        singleWidth: 0,   // width of one slide
+        currentIndex: 0,  // index of current slide
+        mouseOut: true    // is mouse outside of the slides div for continuing slides auto changing
       }
     },
     computed: {
@@ -55,6 +62,9 @@
         if(this.currentIndex === this.slides.length) {
           this.currentIndex = 0;
         }
+      },
+      goToSlideIndex(id) {
+        this.currentIndex = id;
       },
       mouseLeave() {
         this.mouseOut = true;
@@ -89,7 +99,7 @@
               that.currentIndex = 0;
             }
           }
-        }, 2000);
+        }, 3000);
 
         window.addEventListener('keyup', function(event) {
           if (event.keyCode === 37) { // left key
@@ -99,19 +109,38 @@
             that.goToNext();
           }
         });
-
-
       })
     }
   }
 </script>
 <style>
 .slides {
+  position: relative;
+  display: block;
   overflow: hidden;
   text-align: center;
+  /* border: 5px solid black; */
+  width: 1000px;
+  margin: auto;
 }
 .slides-inner {
   transition: margin 0.8s ease-out;
+}
+
+.prev {
+  padding-top: -50%;
+}
+
+.m-nav {
+  padding: 0 10px;
+  line-height: 30px;
+}
+.active {
+  background-color: #ffec0b !important;
+}
+.left-right{
+  padding: 0 10px;
+  line-height: 26px;
 }
 
 </style>

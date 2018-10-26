@@ -1,6 +1,6 @@
 <template>
   <div class="slide">
-    <p>{{slide.title}}</p>
+    <h4>{{slide.title}}</h4>
     <a :href="slide.src">
       <img :src="`static/img/img${slide.id}.jpg`" alt="">
     </a>
@@ -21,7 +21,8 @@
 </script>
 <style scoped>
   img {
-    max-width: 100%;
+    width:inherit;
+    height:inherit;
   }
   .slide {
     display: inline-block;
