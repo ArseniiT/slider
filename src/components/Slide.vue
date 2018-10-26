@@ -1,7 +1,10 @@
 <template>
   <div class="slide">
     <p>{{slide.title}}</p>
-    <img :src="`static/img/img${slide.id}.jpg`" alt="">
+    <a :href="slide.src">
+      <img :src="`static/img/img${slide.id}.jpg`" alt="">
+    </a>
+
   </div>
 </template>
 <script>

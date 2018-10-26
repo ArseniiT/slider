@@ -1,5 +1,7 @@
 <template>
-  <div class="slides" @mouseleave="mouseLeave" @mouseover="mouseOver">
+  <div class="slides"
+    @mouseleave="mouseLeave"
+    @mouseover="mouseOver">
       <div  :style="{width: innerWidth + 'px', marginLeft: '-' + slidesInnerMarginLeft + 'px'}" class="slides-inner">
 
         <Slide  v-for="slide in slides"
@@ -22,13 +24,13 @@
     data () {
       return {
         slides: [
-          {id:0, title: 'Canadian tire menu'},
-          {id:1, title: 'Kijiji infinity loader'},
-          {id:2, title: 'Spring Boot CRUD Library'},
-          {id:3, title: 'News single page application'},
-          {id:4, title: 'itBlog with using PHP and MySQL'},
-          {id:5, title: 'TopJava. My trainee project'},
-          {id:6, title: 'Multi translator'},
+          {id:0, title: 'Canadian tire menu script', src: 'https://github.com/ArseniiT/CanadianTireMenu'},
+          {id:1, title: 'Kijiji infinity loader script', src: 'https://github.com/ArseniiT/KijijiInfiniteScrolling'},
+          {id:2, title: 'Spring Boot CRUD Library', src: 'https://bookcrud.herokuapp.com'},
+          {id:3, title: 'News single page application', src: 'https://vuejsspa3.herokuapp.com'},
+          {id:4, title: 'itBlog with using PHP and MySQL', src: 'https://arseniit.000webhostapp.com'},
+          {id:5, title: 'TopJava. My trainee project', src: 'https://caloriecounterjava.herokuapp.com/meals'},
+          {id:6, title: 'Multi translator', src: 'http://multitrans.myartsonline.com'},
         ],
         innerWidth: 0,
         singleWidth: 0,
@@ -72,20 +74,33 @@
     },
     mounted() {
       this.$nextTick(() => {
+        let that = this;
+
+        // slide possition
         let singleWidth = this.$el.clientWidth / this.itemsPerSlide;
         this.$set(this.$data, 'singleWidth', singleWidth);
         this.$set(this.$data, 'innerWidth', singleWidth * this.slides.length);
-        let that = this;
-      this.$nextTick(function () {
+
+        // slide auto changing
         window.setInterval(function () {
           if(that.mouseOut) {
             ++that.currentIndex;
             if(that.currentIndex === that.slides.length){
               that.currentIndex = 0;
             }
-        }
-      }, 2000);
-      })
+          }
+        }, 2000);
+
+        window.addEventListener('keyup', function(event) {
+          if (event.keyCode === 37) { // left key
+            that.goToPrev();
+          }
+          if (event.keyCode === 39) { // right key
+            that.goToNext();
+          }
+        });
+
+
       })
     }
   }
